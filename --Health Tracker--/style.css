@@ -1,119 +1,96 @@
-/* Background Gradient */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #74ebd5, #9face6);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* App Container */
-.app-container {
-  width: 90%;
-  max-width: 600px;
-  padding: 20px;
+/* Custom glow effects for a futuristic feel */
+.neon-glow-blue {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.6),
+                0 0 10px rgba(59, 130, 246, 0.4),
+                0 0 20px rgba(59, 130, 246, 0.2);
+}
+.neon-glow-green {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.6),
+                0 0 10px rgba(34, 197, 94, 0.4),
+                0 0 20px rgba(34, 197, 94, 0.2);
+}
+.neon-glow-purple {
+    box-shadow: 0 0 5px rgba(168, 85, 247, 0.6),
+                0 0 10px rgba(168, 85, 247, 0.4),
+                0 0 20px rgba(168, 85, 247, 0.2);
 }
 
-/* Header */
-header {
-  text-align: center;
-  color: white;
-  margin-bottom: 20px;
+/* Custom scrollbar for a polished look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #111827;
+}
+::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
 }
 
-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 5px;
+/* Glassmorphism effect for cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-header p {
-  font-size: 1rem;
-  opacity: 0.9;
+.glass-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Card with Glassmorphism */
-.card {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Progress bar animation */
+.progress-bar-inner {
+    width: 0%;
+    transition: width 0.5s ease-in-out;
 }
 
-.card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+/* GAMIFICATION: Style for when a goal is completed */
+.goal-complete {
+    border-color: #34d399; /* Emerald Green */
+    animation: pulse-green 2s infinite;
 }
 
-/* Form Styling */
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 6px;
-  color: #fff;
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+    }
+    70% {
+        transform: scale(1.01);
+        box-shadow: 0 0 10px 15px rgba(52, 211, 153, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+    }
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  transition: box-shadow 0.3s ease;
-}
-
-input:focus {
-  box-shadow: 0 0 8px #fff;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #ff9966, #ff5e62);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-button:hover {
-  background: linear-gradient(135deg, #ff5e62, #ff9966);
-  transform: scale(1.05);
-}
-
-/* Progress List */
-#progress-list {
-  list-style: none;
-  padding: 0;
-}
-
-#progress-list li {
-  background: rgba(255, 255, 255, 0.3);
-  margin: 10px 0;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 1rem;
-  color: #fff;
-  animation: fadeIn 0.5s ease-in;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
+/* Custom Alert Animation */
+.alert-hidden {
+    transform: translateY(120%);
     opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
+.alert-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#date-nav button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
