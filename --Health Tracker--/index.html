@@ -1,48 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Health Tracker</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracker</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="app-container">
-    <header>
-      <h1>🌱 Health Tracker</h1>
-      <p>Track your daily habits & stay healthy ✨</p>
-    </header>
+<body class="bg-gray-900 text-gray-200">
 
-    <main>
-      <section class="card">
-        <h2>Log Your Activities</h2>
-        <form id="health-form">
-          <div class="input-group">
-            <label>💧 Water Intake (liters)</label>
-            <input type="number" id="water" min="0" step="0.1" required>
-          </div>
+    <div class="min-h-screen bg-gradient-to-br from-gray-900 to-black p-4 sm:p-6 lg:p-8">
+        <div class="max-w-4xl mx-auto">
 
-          <div class="input-group">
-            <label>😴 Sleep (hours)</label>
-            <input type="number" id="sleep" min="0" step="0.5" required>
-          </div>
+            <!-- Header -->
+            <header class="text-center mb-6">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight">Health Tracker</h1>
+                <!-- Date Navigation -->
+                <div id="date-nav" class="flex items-center justify-center mt-4 text-lg">
+                    <button id="prev-day-btn" class="p-2 rounded-full hover:bg-gray-700 transition-colors" aria-label="Previous Day">&lt;</button>
+                    <h2 class="text-indigo-400 mx-4 w-64 text-center font-semibold" id="current-date">Loading date...</h2>
+                    <button id="next-day-btn" class="p-2 rounded-full hover:bg-gray-700 transition-colors" aria-label="Next Day">&gt;</button>
+                </div>
+            </header>
 
-          <div class="input-group">
-            <label>🏃 Exercise (minutes)</label>
-            <input type="number" id="exercise" min="0" required>
-          </div>
+            <!-- Main grid for health tracking cards -->
+            <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-          <button type="submit">✨ Add Entry</button>
-        </form>
-      </section>
+                <!-- Water Intake Card -->
+                <div id="water-card" class="glass-card rounded-2xl p-6 flex flex-col items-center text-center">
+                    <div class="mb-4 text-blue-400">
+                        <!-- Water Drop Icon -->
+                        <svg class="h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.49 12.49a8.97 8.97 0 01-1.49 4.51c-1.4 2.22-3.83 3.5-6.5 3.5s-5.1-1.28-6.5-3.5a8.97 8.97 0 01-1.49-4.51c0-4.97 4.03-9 9-9s9 4.03 9 9z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white">Water Intake</h3>
+                    <p class="text-gray-400 mt-1 mb-4">Goal: 8 Glasses</p>
+                    <p class="text-5xl font-bold text-blue-400 mb-4"><span id="water-count">0</span>/8</p>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                        <div id="water-progress" class="bg-blue-500 h-2.5 rounded-full progress-bar-inner"></div>
+                    </div>
+                    <button id="add-water-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 neon-glow-blue">Log a Glass</button>
+                </div>
 
-      <section class="card">
-        <h2>📊 Today's Progress</h2>
-        <ul id="progress-list"></ul>
-      </section>
-    </main>
-  </div>
+                <!-- Sleep Card -->
+                <div id="sleep-card" class="glass-card rounded-2xl p-6 flex flex-col items-center text-center">
+                    <div class="mb-4 text-purple-400">
+                        <!-- Moon Icon -->
+                         <svg class="h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white">Sleep</h3>
+                    <p class="text-gray-400 mt-1 mb-4">Goal: 8 Hours</p>
+                    <p class="text-5xl font-bold text-purple-400 mb-4"><span id="sleep-count">0</span>/8</p>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                        <div id="sleep-progress" class="bg-purple-500 h-2.5 rounded-full progress-bar-inner"></div>
+                    </div>
+                    <button id="add-sleep-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 neon-glow-purple">Log Hours</button>
+                </div>
 
-  <script src="script.js"></script>
+                <!-- Exercise Card -->
+                <div id="exercise-card" class="glass-card rounded-2xl p-6 flex flex-col items-center text-center">
+                    <div class="mb-4 text-green-400">
+                        <!-- Heart Icon -->
+                        <svg class="h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white">Exercise</h3>
+                    <p class="text-gray-400 mt-1 mb-4">Goal: 30 Mins</p>
+                    <p class="text-5xl font-bold text-green-400 mb-4"><span id="exercise-count">0</span>/30</p>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                        <div id="exercise-progress" class="bg-green-500 h-2.5 rounded-full progress-bar-inner"></div>
+                    </div>
+                    <button id="add-exercise-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 neon-glow-green">Log Mins</button>
+                </div>
+            </main>
+
+            <!-- Stats & Chart Section -->
+            <section class="mt-10 glass-card rounded-2xl p-6">
+                <h3 class="text-2xl font-semibold text-white text-center mb-4">Daily Progress</h3>
+                <div class="w-full max-w-xs mx-auto">
+                    <canvas id="daily-chart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal for input -->
+    <div id="input-modal" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex justify-center items-center hidden z-50">
+        <div class="bg-gray-800 rounded-2xl p-8 w-11/12 max-w-sm border border-gray-700 shadow-2xl">
+            <h4 id="modal-title" class="text-2xl font-bold text-center mb-4">Log Activity</h4>
+            <p id="modal-prompt" class="text-center text-gray-400 mb-6">How many?</p>
+            <input type="number" id="modal-input" class="w-full bg-gray-900 border border-gray-600 rounded-lg p-3 text-center text-white text-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="Enter value">
+            <div class="flex gap-4 mt-6">
+                <button id="modal-cancel" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300">Cancel</button>
+                <button id="modal-save" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification/Alert Box -->
+    <div id="custom-alert" class="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-lg hidden alert-hidden">
+        <p id="custom-alert-message"></p>
+    </div>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
+
+
