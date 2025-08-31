@@ -1,0 +1,119 @@
+/* Background Gradient */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App Container */
+.app-container {
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Card with Glassmorphism */
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* Form Styling */
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 8px #fff;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff5e62, #ff9966);
+  transform: scale(1.05);
+}
+
+/* Progress List */
+#progress-list {
+  list-style: none;
+  padding: 0;
+}
+
+#progress-list li {
+  background: rgba(255, 255, 255, 0.3);
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #fff;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

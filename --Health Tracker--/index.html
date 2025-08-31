@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🌱 Health Tracker</h1>
+      <p>Track your daily habits & stay healthy ✨</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Log Your Activities</h2>
+        <form id="health-form">
+          <div class="input-group">
+            <label>💧 Water Intake (liters)</label>
+            <input type="number" id="water" min="0" step="0.1" required>
+          </div>
+
+          <div class="input-group">
+            <label>😴 Sleep (hours)</label>
+            <input type="number" id="sleep" min="0" step="0.5" required>
+          </div>
+
+          <div class="input-group">
+            <label>🏃 Exercise (minutes)</label>
+            <input type="number" id="exercise" min="0" required>
+          </div>
+
+          <button type="submit">✨ Add Entry</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>📊 Today's Progress</h2>
+        <ul id="progress-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
